@@ -1,38 +1,65 @@
+html {
+  background-image: url('https://i.ytimg.com/vi/UNOmaFs6KaY/maxresdefault.jpg');
+  background-size: cover;
+  height: 100%;
+}
+/* Root App */
+
 .App {
   text-align: center;
+  display: grid;
+  place-items: center;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App h1 {
+  color: whitesmoke;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* Main Component */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 90%;
+  height: 100vh;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 70%)
 }
 
-.App-link {
-  color: #61dafb;
+/* SearchBar Component */
+
+.search-bar {
+  margin-bottom: 10px;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  border-bottom: 2px solid black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Display Component */ 
+
+.display {
+  margin-bottom: 10px;
+  height: 100vh;
+}
+
+/* Search Component */
+
+.search {
+  width: 50%;
+  padding: 5px;
+}
+
+.search input {
+  margin-right: 10px;
+}
+
+/* Filter Component */
+
+.filter {
+  margin-bottom: 10px;
+  padding: 5px;
+  margin-right: 15px;
 }
