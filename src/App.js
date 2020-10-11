@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
 import Main from './Components/Main/Main';
-// import getCharacters from './apiFetches';
 import config from './config.js';
+import StarWarsContext from './StarWarsContext';
 
 export default class App extends Component {
   state = {
-    spaceships: [],
-    vehicles: [],
+    search: '',
+    filter: '',
     characters: [],
     films: [],
-    species: [],
     error: null
   }
 
-   getCharacters = () => {
-    fetch(`${config.API_ENDPOINT}/people/`, {
+   getCharacters = (e) => {
+     e.preventDefault();
+     let search = e.target.search.value;
+     let filter = e.target.filter.value;
+     this.setState({
+       search: search,
+       filter: filter,
+     }) 
+    fetch(`${config.API_ENDPOINT}/${filter}/`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -23,31 +29,30 @@ export default class App extends Component {
     })
       .then(res => {
         return res.json();
-        console.log(res);
       })
       .then(result => {
-        console.log(result);
+        console.log(result.results);
         this.setState({
-          characters: result
+          characters: result.results
         })
       })
   };
 
-
-  // setCharacters = characters => {
-  //   this.setState({
-  //     characters,
-  //     error: null,
-  //   })
-  // }
-
   render() {
-    console.log(this.state.characters);
+    const starContext = {
+      search: this.state.search,
+      filter: this.state.filter,
+      characters: this.state.characters,
+      films: this.state.films,
+      getCharacters: this.getCharacters
+    }
     return (
+      <StarWarsContext.Provider value={starContext}>
       <div className='App'>
         <h1> Star Wars Search </h1>
         <Main />
       </div>
+      </StarWarsContext.Provider>
     );
   }
 }

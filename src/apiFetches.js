@@ -1,21 +1,20 @@
 import config from './config.js';
-import setCharacters from './App';
 
 const getCharacters = () => {
-  fetch(`${config.API_ENDPOINT}/people`, {
+  fetch(`${config.API_ENDPOINT}/people/`, {
     method: 'GET',
     headers: {
       'content-type': 'application/json',
     },
   })
     .then(res => {
-      if (!res.ok) {
-        throw new Error(res.status);
-      }
       return res.json();
     })
-    .then(setCharacters)
-    .catch(error => this.setState({ error }));
+    .then(result => {
+      this.setState({
+        characters: result,
+      });
+    });
 };
 
 const getStarShips = () => {
