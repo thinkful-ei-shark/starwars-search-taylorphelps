@@ -4,7 +4,7 @@ import React from 'react';
 const StarWarsContext = React.createContext({
     search: '',
     filter: '',
-    characters: [],
+    starWarsData: [],
     getCharacters: () => {},
 });
 

@@ -8,11 +8,11 @@ export default class App extends Component {
   state = {
     search: '',
     filter: '',
-    characters: [],
+    starWarsData: [],
     error: null
   }
 
-   getCharacters = (e) => {
+   handleDataSubmit = (e) => {
      e.preventDefault();
      let search = e.target.search.value;
      let filter = e.target.filter.value;
@@ -27,27 +27,31 @@ export default class App extends Component {
       },
     })
       .then(res => {
+        if(!res.ok) {
+          throw new Error(res.status);
+        }
         return res.json();
       })
       .then(result => {
         console.log(result.results);
         this.setState({
-          characters: result.results
+          starWarsData: result.results
         })
       })
+      .catch(error => this.setState({ error }));
   };
 
   render() {
     const starContext = {
       search: this.state.search,
       filter: this.state.filter,
-      characters: this.state.characters,
-      getCharacters: this.getCharacters
+      starWarsData: this.state.starWarsData,
+      handleDataSubmit: this.handleDataSubmit
     }
     return (
       <StarWarsContext.Provider value={starContext}>
       <div className='App'>
-        <h1> Star Wars Search </h1>
+        <img src='https://fontmeme.com/temporary/b810444eac2b5eaef259d90e3bde356f.png' />
         <Main />
       </div>
       </StarWarsContext.Provider>

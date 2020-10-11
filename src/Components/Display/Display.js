@@ -5,28 +5,18 @@ import StarWarsContext from '../../StarWarsContext';
 export default class Display extends Component {
     static contextType = StarWarsContext;
     render() {
-        const { characters, search, filter } = this.context;
-        const characterList = characters.map(character => {
-            if (character.name.includes(search)) {
-                return (
-                    <li className='list-item'>{character.name}</li>
-                )
+        const { starWarsData, search, filter } = this.context;
+        const displayList = starWarsData.map(data => {
+            if(data.name && filter !== 'films' && data.name.toLowerCase().includes(search.toLowerCase())) {
+                return <li className='list-name'><h4>{data.name}</h4></li>
+            } else if (data.title && filter === 'films' && data.title.toLowerCase().includes(search.toLowerCase())) {
+                return <li className='list-item'><h4>{data.title}</h4></li>
             }
         })
-
-        const filmList = characters.map(film => {
-            if(filter === 'films' && film.title.toLowerCase().includes(search.toLowerCase())) {
-                return (
-                    <li className='list-item'>{film.title}</li>
-                )
-            }
-        })
-        console.log(filter);
         return (
             <div className='display'>
                 <ul>
-                {characterList}
-                {filmList}
+                {displayList}
                 </ul>
              </div>
         )
