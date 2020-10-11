@@ -5,7 +5,6 @@ const StarWarsContext = React.createContext({
     search: '',
     filter: '',
     characters: [],
-    films: [],
     getCharacters: () => {},
 });
 

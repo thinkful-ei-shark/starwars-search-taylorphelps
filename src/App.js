@@ -9,7 +9,6 @@ export default class App extends Component {
     search: '',
     filter: '',
     characters: [],
-    films: [],
     error: null
   }
 
@@ -43,7 +42,6 @@ export default class App extends Component {
       search: this.state.search,
       filter: this.state.filter,
       characters: this.state.characters,
-      films: this.state.films,
       getCharacters: this.getCharacters
     }
     return (
